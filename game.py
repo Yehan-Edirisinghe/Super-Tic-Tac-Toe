@@ -8,13 +8,16 @@ black   =   0,  0,  0
 
 class Board:
 
-    grid = np.empty((9,9))
+    grid    = np.empty((9,9))
+    bigTris = np.empty((3,3))
 
     def __init__(self,size):
         self.size = size
         for i in range(8):
             for j in range(8):
                 self.grid[i,j] = 0
+
+
 
 class Player:
     name = ""
@@ -25,8 +28,20 @@ class Player:
         self.marker = marker
 
 def ask_Move(string):
-    a = input(string).split(',')
+    a = input(string).split('.')
     return int(a[0]), int(a[1])
+
+def checkTris(x,y,board):
+
+    for i in range(3*x,3*x+3):
+        for j in range(3*y,3*y+3):
+            if board.grid[i,j] == 1:
+                
+
+def checkBigTris():
+    for i in range(4):
+        for j in range(4):
+            pass
 
 def play(canvas,board:Board,turn):
     '''makes a move on the board, given the position and player'''
@@ -42,7 +57,7 @@ def play(canvas,board:Board,turn):
         marker = 2
 
     board.grid[move[0],move[1]] = marker
-
+    checkTris(0,1,board)
 
 
     return True
