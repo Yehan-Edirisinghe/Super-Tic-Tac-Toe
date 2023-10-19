@@ -37,5 +37,4 @@ def play(canvas):
     # draw_O(pos=(a,b),canvas=canvas)
 
 
-
     return True
