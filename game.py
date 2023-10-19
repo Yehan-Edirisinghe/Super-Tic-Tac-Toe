@@ -56,7 +56,7 @@ def checkTris(x,y,board):
 
                 if board.grid[center[0]-1,j+1] == board.grid[center[0]-1,j-1] == 1:
                     return True
-
+                
 
 
 
