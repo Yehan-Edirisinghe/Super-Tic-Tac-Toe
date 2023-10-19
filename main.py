@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+from game import play
 import game
 
 white   = 255,255,255
@@ -68,7 +69,7 @@ def main():
         canvas.fill(black)
         draw_board(size,canvas)
         
-        run = game.play(canvas)
+        run = play(canvas)
 
         pygame.display.flip()
         
