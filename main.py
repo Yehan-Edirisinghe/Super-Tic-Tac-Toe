@@ -1,5 +1,6 @@
 import pygame
-from game import play,Player,Board,drawBoard
+from game import play,Player,Board
+from draw import drawBoard
 
 white   = 255,255,255
 red     = 255,  0,  0
@@ -28,20 +29,21 @@ def main():
 
     # Loop commands:
     run = True
+    turn = 0
     while run:
 
         canvas.fill(black)
-        
-        run = play(canvas,board,p2,(8,8))
-
         drawBoard(board,canvas)
-
         pygame.display.flip()
+
         
+        play(canvas,board,turn)
+
         for event in pygame.event.get():
             if event.type is pygame.QUIT:
                 run = False
 
+        turn +=1
     pygame.quit()
 
 
