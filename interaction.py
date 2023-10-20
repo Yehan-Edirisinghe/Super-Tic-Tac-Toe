@@ -32,6 +32,4 @@ def click(size):
         y-=1
         return x,y
     else:
-        return False
-
-    
+        return False   

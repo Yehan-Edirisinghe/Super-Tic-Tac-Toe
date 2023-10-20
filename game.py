@@ -1,4 +1,3 @@
-import pygame
 import numpy as np
 from interaction import click
 
