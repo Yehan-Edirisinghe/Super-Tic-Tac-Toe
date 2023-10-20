@@ -1,5 +1,5 @@
 import pygame
-from game import play,Player,Board
+from game import play,Player,Board,checkTris
 from draw import drawBoard
 
 white   = 255,255,255
@@ -41,12 +41,14 @@ def main():
         pygame.display.flip()
 
         for event in pygame.event.get():
-            print(turn)
             
             if play(canvas.get_size(),board,turn):
                 moved = True
             
-
+            for i in range(3):
+                for j in range(3):
+                    if checkTris(i,j,board):
+                        print("Tris in:",i,j)
             
             if event.type is pygame.QUIT:
                 run = False

@@ -18,8 +18,6 @@ class Board:
             for j in range(8):
                 self.grid[i,j] = 0
 
-
-
 class Player:
     name = ""
     marker = 0
@@ -39,23 +37,23 @@ def checkTris(x,y,board):
 
             center = (i-3*x ,j-3*y)
 
-            if (i-3*x)==(j-3*y) and board.grid[i,j] == 1:
+            if i == 3*x+1 and j == 3*y+3 and board.grid[i,j] == 1:
+                print(i,j)
+                
+                
+            #     if board.grid[i+1,j] == board.grid[i-1,j] == 1:
+            #         return True
+            #     if board.grid[i,j+1] == board.grid[i,j-1] == 1:
+            #         return True
+            #     if board.grid[i+1,j+1] == board.grid[i-1,j-1] == 1:
+            #         return True
+            #     if board.grid[i+1,j-1] == board.grid[i-1,j+1] == 1:
+            #         return True
+                
+            # elif board.grid[center[0]-1,j] == 1:
 
-                
-                
-                if board.grid[i+1,j] == board.grid[i-1,j] == 1:
-                    return True
-                if board.grid[i,j+1] == board.grid[i,j-1] == 1:
-                    return True
-                if board.grid[i+1,j+1] == board.grid[i-1,j-1] == 1:
-                    return True
-                if board.grid[i+1,j-1] == board.grid[i-1,j+1] == 1:
-                    return True
-                
-            elif board.grid[center[0]-1,j] == 1:
-
-                if board.grid[center[0]-1,j+1] == board.grid[center[0]-1,j-1] == 1:
-                    return True
+            #     if board.grid[center[0]-1,j+1] == board.grid[center[0]-1,j-1] == 1:
+            #         return True
                 
 
 
@@ -77,14 +75,9 @@ def play(size,board:Board,turn):
             board.grid[input[0],input[1]] = marker
             return True
 
-        else:
+        elif turn%2 != 0:
             marker = 2
             board.grid[input[0],input[1]] = marker
             return True
 
-        # for i in range(3):
-        #     for j in range(3):
-        #         if checkTris(i,j,board):
-        #             print("Tris!")
     return False
-        
