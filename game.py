@@ -1,5 +1,6 @@
 import pygame
 import numpy as np
+from interaction import click
 
 white   = 255,255,255
 red     = 255,  0,  0
@@ -65,25 +66,26 @@ def checkBigTris():
         for j in range(4):
             pass
 
-def play(canvas,board:Board,turn):
+def play(size,board:Board,turn):
     '''makes a move on the board, given the position and player'''
 
-    if turn%2 == 0:
+    input = click(size)
+
+    if input != False:
+
+        if turn%2 == 0:
+            marker = 1
+            board.grid[input[0],input[1]] = marker
+            return True
+
+        else:
+            marker = 2
+            board.grid[input[0],input[1]] = marker
+            return True
+
+        # for i in range(3):
+        #     for j in range(3):
+        #         if checkTris(i,j,board):
+        #             print("Tris!")
+    return False
         
-        move = ask_Move("Player one turn:\n")
-        marker = 1
-
-    if turn%2 != 0:
-
-        move = ask_Move("Player two turn:\n")
-        marker = 2
-
-    board.grid[move[0],move[1]] = marker
-
-    for i in range(3):
-        for j in range(3):
-            if checkTris(i,j,board):
-                print("Tris!")
-
-
-    return True

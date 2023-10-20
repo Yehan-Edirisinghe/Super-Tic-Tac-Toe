@@ -18,6 +18,8 @@ def main():
 
     # One time commands:
 
+    clock = pygame.time.Clock()
+
     size = 600,600
     canvas = init_window(size)
 
@@ -37,13 +39,21 @@ def main():
         pygame.display.flip()
 
         
-        play(canvas,board,turn)
 
         for event in pygame.event.get():
+            
+            if play(canvas.get_size(),board,turn):
+                print(turn)
+                turn+=1
+            
+            
+
+            
             if event.type is pygame.QUIT:
                 run = False
+        clock.tick(60)
 
-        turn +=1
+        
     pygame.quit()
 
 
