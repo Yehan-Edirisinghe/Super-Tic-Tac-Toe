@@ -35,7 +35,6 @@ def main():
     while run:
         
         moved = False
-
         canvas.fill(black)
         drawBoard(board,canvas)
         pygame.display.flip()
@@ -48,7 +47,7 @@ def main():
             for i in range(3):
                 for j in range(3):
                     if checkTris(i,j,board):
-                        print("Tris in:",i,j)
+                        board.bigTris[i,j] =1
             
             if event.type is pygame.QUIT:
                 run = False

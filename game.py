@@ -34,21 +34,21 @@ def checkTris(x,y,board):
 
     for i in range(3*x,3*x+3):
         for j in range(3*y,3*y+3):
+            
+            
+            center = ((3*x)+1 ,(3*y)+1)
 
-            center = (i-3*x ,j-3*y)
-
-            if i == 3*x+1 and j == 3*y+3 and board.grid[i,j] == 1:
-                print(i,j)
+            if (i,j) == center :
+                               
                 
-                
-            #     if board.grid[i+1,j] == board.grid[i-1,j] == 1:
-            #         return True
-            #     if board.grid[i,j+1] == board.grid[i,j-1] == 1:
-            #         return True
-            #     if board.grid[i+1,j+1] == board.grid[i-1,j-1] == 1:
-            #         return True
-            #     if board.grid[i+1,j-1] == board.grid[i-1,j+1] == 1:
-            #         return True
+                if board.grid[i+1,j] == board.grid[i-1,j] == 1:
+                    return True
+                if board.grid[i,j+1] == board.grid[i,j-1] == 1:
+                    return True
+                if board.grid[i+1,j+1] == board.grid[i-1,j-1] == 1:
+                    return True
+                if board.grid[i+1,j-1] == board.grid[i-1,j+1] == 1:
+                    return True
                 
             # elif board.grid[center[0]-1,j] == 1:
 
@@ -70,14 +70,16 @@ def play(size,board:Board,turn):
 
     if input != False:
 
-        if turn%2 == 0:
-            marker = 1
-            board.grid[input[0],input[1]] = marker
-            return True
+        if board.grid[input[0],input[1]] !=1 and board.grid[input[0],input[1]] !=2:
 
-        elif turn%2 != 0:
-            marker = 2
-            board.grid[input[0],input[1]] = marker
-            return True
+            if turn%2 == 0:
+                marker = 1
+                board.grid[input[0],input[1]] = marker
+                return True
+
+            elif turn%2 != 0:
+                marker = 2
+                board.grid[input[0],input[1]] = marker
+                return True
 
     return False

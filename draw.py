@@ -4,7 +4,7 @@ white   = 255,255,255
 red     = 255,  0,  0
 black   =   0,  0,  0
 
-def draw_X(pos,canvas):
+def draw_x(pos,canvas):
 
     pos = map_(pos[0],pos[1],canvas)
     size = canvas.get_size()
@@ -20,9 +20,31 @@ def draw_X(pos,canvas):
     pygame.draw.line(canvas,white,i,f)
     pygame.draw.line(canvas,white,i1,f1)
 
-def draw_O(pos,canvas):
+def draw_X(pos,canvas):
+
+    pos = map2(pos[0],pos[1],canvas)
+
+    size = canvas.get_size()
+    k = size[0]/6
+    l = size[1]/6
+
+    i = pos[0]-k,pos[1]-k
+    f = pos[0]+l,pos[1]+l
+    
+    i1 = pos[0]-k,pos[1]+k
+    f1 = pos[0]+k,pos[1]-k
+
+    pygame.draw.line(canvas,white,i,f)
+    pygame.draw.line(canvas,white,i1,f1)
+
+def draw_o(pos,canvas):
     pos = map_(pos[0],pos[1],canvas)
     r = canvas.get_width()/20
+    pygame.draw.circle(canvas,white,pos,r,1)
+
+def draw_O(pos,canvas):
+    pos = map_(pos[0],pos[1],canvas)
+    r = canvas.get_width()/3
     pygame.draw.circle(canvas,white,pos,r,1)
 
 def map_(x,y,canvas):
@@ -30,6 +52,13 @@ def map_(x,y,canvas):
     x_size,y_size = canvas.get_size()
     a = (x_size/9 )*x+ x_size/18
     b = (y_size/9 )*y+ y_size/18
+    return a,b
+
+def map2(x,y,canvas):
+    '''change coordinates from 1-8 numbers to pixel coords'''
+    x_size,y_size = canvas.get_size()
+    a = (x_size/9 )*3*x+ 3*x_size/18
+    b = (y_size/9 )*3*y+ 3*y_size/18
     return a,b
 
 def drawGrid(size,canvas):
@@ -61,7 +90,15 @@ def drawBoard(board,canvas):
         for j in range(9):
             
             if board.grid[i,j] == 1:
-                draw_X((i,j),canvas)
+                draw_x((i,j),canvas)
 
             elif board.grid[i,j] == 2:
+                draw_o((i,j),canvas)
+    for i in range(3):
+        for j in range(3):
+
+            if board.bigTris[i,j] == 1:
+                draw_X((i,j),canvas)
+
+            elif board.bigTris[i,j] == 2:
                 draw_O((i,j),canvas)
