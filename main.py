@@ -46,8 +46,10 @@ def main():
             
             for i in range(3):
                 for j in range(3):
-                    if checkTris(i,j,board):
-                        board.bigTris[i,j] =1
+                    if checkTris(i,j,board.grid,p1):
+                        board.bigTris[i,j] = p1.marker
+                    if checkTris(i,j,board.grid,p2):
+                        board.bigTris[i,j] = p2.marker
             
             if event.type is pygame.QUIT:
                 run = False

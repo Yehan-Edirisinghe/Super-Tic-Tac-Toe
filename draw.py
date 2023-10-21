@@ -2,6 +2,7 @@ import pygame
 
 white   = 255,255,255
 red     = 255,  0,  0
+indigo  =  75,  25,200
 black   =   0,  0,  0
 
 def draw_x(pos,canvas):
@@ -34,8 +35,8 @@ def draw_X(pos,canvas):
     i1 = pos[0]-k,pos[1]+k
     f1 = pos[0]+k,pos[1]-k
 
-    pygame.draw.line(canvas,white,i,f)
-    pygame.draw.line(canvas,white,i1,f1)
+    pygame.draw.line(canvas,indigo,i,f)
+    pygame.draw.line(canvas,indigo,i1,f1)
 
 def draw_o(pos,canvas):
     pos = map_(pos[0],pos[1],canvas)
@@ -43,9 +44,9 @@ def draw_o(pos,canvas):
     pygame.draw.circle(canvas,white,pos,r,1)
 
 def draw_O(pos,canvas):
-    pos = map_(pos[0],pos[1],canvas)
-    r = canvas.get_width()/3
-    pygame.draw.circle(canvas,white,pos,r,1)
+    pos = map2(pos[0],pos[1],canvas)
+    r = canvas.get_width()/6
+    pygame.draw.circle(canvas,indigo,pos,r,1)
 
 def map_(x,y,canvas):
     '''change coordinates from 1-8 numbers to pixel coords'''
