@@ -13,4 +13,4 @@ Install Dependencies:
 >**pip install pygame**
 
 Installing python3 depends on the OS, for Linux:
->>sudo apt install python
+>sudo apt install python
