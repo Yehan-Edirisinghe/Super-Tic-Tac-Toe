@@ -11,6 +11,6 @@ To **run** the program download all the files in the same directory and run this
 
 Install Dependencies:
 <Installing python3 depends o the OS, for Linux:
-<<sudo apt install python
+>>sudo apt install python
 
-<**pip install pygame**
+>**pip install pygame**
