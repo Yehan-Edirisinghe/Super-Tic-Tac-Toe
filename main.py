@@ -1,5 +1,5 @@
 import pygame
-from game import play,Player,Board,checkTris
+from game import play,Player,Board,checkTris,checkBigTris
 from draw import drawBoard
 
 white   = 255,255,255
@@ -12,6 +12,8 @@ def init_window(size):
     pygame.display.set_caption("Tic Tac Toe by edi")
     canvas = pygame.display.set_mode((size[0]+1,size[1]+1))
     return canvas
+
+
 
 
 def main():
@@ -35,6 +37,7 @@ def main():
     while run:
         
         moved = False
+
         canvas.fill(black)
         drawBoard(board,canvas)
         pygame.display.flip()
@@ -46,11 +49,23 @@ def main():
             
             for i in range(3):
                 for j in range(3):
+
                     if checkTris(i,j,board.grid,p1):
                         board.bigTris[i,j] = p1.marker
                     if checkTris(i,j,board.grid,p2):
                         board.bigTris[i,j] = p2.marker
             
+            for i in range(3):
+                for j in range(3):
+
+                    if checkBigTris(board.bigTris,p1):
+                        print("Player 1 won")
+                        break
+                    if checkBigTris(board.bigTris,p2):
+                        print("Player 2 won")
+                        run = False
+                        
+
             if event.type is pygame.QUIT:
                 run = False
         if moved:

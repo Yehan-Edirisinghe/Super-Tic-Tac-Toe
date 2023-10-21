@@ -26,94 +26,47 @@ class Player:
         self.same = name
         self.marker = marker
 
-def ask_Move(string):
-    a = input(string).split('.')
-    return int(a[0]), int(a[1])
 
 def checkTris(x, y, grid:Board.grid ,p:Player):
-
-    for i in range(3*x,3*x+3):
-        for j in range(3*y,3*y+3):
             
-            
-            center = ((3*x)+1 ,(3*y)+1)
+    center = ((3*x)+1 ,(3*y)+1)
 
-            if (i,j) == center and grid[i,j] == p.marker :
-                               
-                
-                if grid[i+1,j]    == grid[i-1,j] == p.marker:
-                    return True
-                if grid[i,j+1]    == grid[i,j-1] == p.marker:
-                    return True
-                if grid[i+1,j+1]  == grid[i-1,j-1] == p.marker:
-                    return True
-                if grid[i+1,j-1]  == grid[i-1,j+1] == p.marker:
-                    return True
-                
-            if grid[center[0]-1,j] == p.marker:
+    if grid[center] == p.marker :
+                        
+        
+        if grid[center[0]+1,center[1]]    == grid[center[0]-1,center[1]] == p.marker:
+            return True
+        if grid[center[0],center[1]+1]    == grid[center[0],center[1]-1] == p.marker:
+            return True
+        if grid[center[0]+1,center[1]+1]  == grid[center[0]-1,center[1]-1] == p.marker:
+            return True
+        if grid[center[0]+1,center[1]-1]  == grid[center[0]-1,center[1]+1] == p.marker:
+            return True
+        
+    elif grid[center[0]-1,center[1]] == p.marker:
 
-                if grid[center[0]-1,j+1] == grid[center[0]-1,j-1] == p.marker:
-                    return True
-                
-            if grid[center[0]+1,j] == p.marker:
-                
-                if grid[center[0]+1,j+1] == grid[center[0]+1,j-1] == p.marker:
-                    return True
-                
-            if grid[i,center[1]-1] == p.marker:
+        if grid[center[0]-1,center[1]+1] == grid[center[0]-1,center[1]-1] == p.marker:
+            return True
+        
+    elif grid[center[0]+1,center[1]] == p.marker:
+        
+        if grid[center[0]+1,center[1]+1] == grid[center[0]+1,center[1]-1] == p.marker:
+            return True
+        
+    elif grid[center[0],center[1]-1] == p.marker:
 
-                if grid[i-1,center[1]-1] == grid[i+1,center[1]-1] == p.marker:
-                    return True
-                
-            if grid[i,center[1]+1] == p.marker:
-            
-                if grid[i-1,center[1]+1] == grid[i+1,center[1]+1] == p.marker:
-                    return True
-
-
-
+        if grid[center[0]-1,center[1]-1] == grid[center[0]+1,center[1]-1] == p.marker:
+            return True
+        
+    elif grid[center[0],center[1]+1] == p.marker:
+    
+        if grid[center[0]-1,center[1]+1] == grid[center[0]+1,center[1]+1] == p.marker:
+            return True
 
 def checkBigTris(grid:Board, p:Player):
     
-    center = (1,1)
-
-    for i in range(3):
-        for j in range(3):
-            
-            
-
-            if (i,j) == center and grid[i,j] == p.marker :
-                               
-                
-                if grid[i+1,j]    == grid[i-1,j] == p.marker:
-                    return True
-                if grid[i,j+1]    == grid[i,j-1] == p.marker:
-                    return True
-                if grid[i+1,j+1]  == grid[i-1,j-1] == p.marker:
-                    return True
-                if grid[i+1,j-1]  == grid[i-1,j+1] == p.marker:
-                    return True
-                
-            if grid[center[0]-1,j] == p.marker:
-
-                if grid[center[0]-1,j+1] == grid[center[0]-1,j-1] == p.marker:
-                    return True
-                
-            if grid[center[0]+1,j] == p.marker:
-                
-                if grid[center[0]+1,j+1] == grid[center[0]+1,j-1] == p.marker:
-                    return True
-                
-            if grid[i,center[1]-1] == p.marker:
-
-                if grid[i-1,center[1]-1] == grid[i+1,center[1]-1] == p.marker:
-                    return True
-                
-            if grid[i,center[1]+1] == p.marker:
-            
-                if grid[i-1,center[1]+1] == grid[i+1,center[1]+1] == p.marker:
-                    return True
-                
+    if checkTris(0,0,grid,p):
+        return True   
 
 def play(size,board:Board,turn):
     '''makes a move on the board, given the position and player'''
