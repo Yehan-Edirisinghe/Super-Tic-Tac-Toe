@@ -2,9 +2,9 @@
 Super tic tac toe game
 
 Dependencies: 
->-python3
+>**-python3**
 
->-pygame
+>**-pygame**
 
-To run the program download all the files in the same directory and run this command:
->>python3 main.py 
+To **run** the program download all the files in the same directory and run this command:
+>**python3 main.py**
