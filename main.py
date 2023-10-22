@@ -3,14 +3,13 @@ from game import *
 from draw import drawBoard
 import socket
 from server import handle_client
-from client import send
 import threading
 
 white   = 255,255,255
 red     = 255,  0,  0
 black   =   0,  0,  0
 
-#SERVE-CLIENT data
+#SERVER-CLIENT data
 
 PORT = 6050
 SERVER = '192.168.1.193'
@@ -37,15 +36,16 @@ def server_start():
     server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
     server.bind(ADDR)
     server.listen()
+    print(f"Started listening on: {SERVER}\n")
 
-
-    while 1:
+    run = True
+    while run:
         conn,addr = server.accept()
 
         thread = threading.Thread(target=handle_client,args=(conn,addr))
         thread.start()
-        
-            
+        print(thread.join())
+        print(f"Active Clients:\t{threading.active_count()-1}\n")
 
 
 
@@ -112,4 +112,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    server_start()

@@ -10,8 +10,7 @@ FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!Disconnect"
 
 
-client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-client.connect(ADDR)
+
 
 def send(msg):
     message = msg.encode(FORMAT)
@@ -23,5 +22,7 @@ def send(msg):
 
 
 if __name__=='__main__':
-    send("Hello there")
-    send(DISCONNECT_MESSAGE)
+    client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    client.connect(ADDR)
+
+    send("hello")
