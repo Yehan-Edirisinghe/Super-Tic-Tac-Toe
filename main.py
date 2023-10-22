@@ -1,5 +1,5 @@
 import pygame
-from game import play,Player,Board,checkTris,checkBigTris
+from game import *
 from draw import drawBoard
 
 white   = 255,255,255
