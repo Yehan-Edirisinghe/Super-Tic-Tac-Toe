@@ -9,37 +9,33 @@ HEADER = 64
 FORMAT = 'utf-8'
 DISCONNECT_MESSAGE = "!Disconnect"
 
-server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-server.bind(ADDR)
+# server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+# server.bind(ADDR)
 
 def handle_client(conn, addr):
 
     print(f"New connection : {addr}\n")
 
-    connected = True
-    while connected:
+    msg_lenght = conn.recv(HEADER).decode(FORMAT)
+    
+    if msg_lenght:
 
-        msg_lenght = conn.recv(HEADER).decode(FORMAT)
+        msg_lenght = int(msg_lenght)
+        msg = conn.recv(msg_lenght).decode(FORMAT)
+        if msg == DISCONNECT_MESSAGE:
+            return False
+        return msg
         
-        if msg_lenght:
-            
-            msg_lenght = int(msg_lenght)
-            msg = conn.recv(msg_lenght).decode(FORMAT)
-            if msg == DISCONNECT_MESSAGE:
-                break
-            print(f"{addr}:\t{msg}")
-    conn.close()
 
 
 
-def start():
-    server.listen()
-    print(f"Started listening on {SERVER}")
-    while 1:
-        conn,addr = server.accept()
-        thread = threading.Thread(target=handle_client, args=(conn,addr))
-        thread.start()
-        print(threading.active_count())
+# def start():
+#     server.listen()
+#     print(f"Started listening on {SERVER}")
+#     while 1:
+#         conn,addr = server.accept()
+#         thread = threading.Thread(target=handle_client, args=(conn,addr))
+#         thread.start()
+#         print(threading.active_count())
 
-start()
 

@@ -1,17 +1,52 @@
 import pygame
 from game import *
 from draw import drawBoard
+import socket
+from server import handle_client
+from client import send
+import threading
 
 white   = 255,255,255
 red     = 255,  0,  0
 black   =   0,  0,  0
 
+#SERVE-CLIENT data
+
+PORT = 6050
+SERVER = '192.168.1.193'
+SERVER = socket.gethostbyname(socket.gethostname())
+ADDR = (SERVER,PORT)
+HEADER = 64
+FORMAT = 'utf-8'
+DISCONNECT_MESSAGE = "!Disconnect"
+
+####################################
+
+
 def init_window(size):
     '''initialise pygame with graphic settings'''
+
     pygame.init()
     pygame.display.set_caption("Tic Tac Toe by edi")
     canvas = pygame.display.set_mode((size[0]+1,size[1]+1))
     return canvas
+
+
+def server_start():
+
+    server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    server.bind(ADDR)
+    server.listen()
+
+
+    while 1:
+        conn,addr = server.accept()
+
+        thread = threading.Thread(target=handle_client,args=(conn,addr))
+        thread.start()
+        
+            
+
 
 
 
